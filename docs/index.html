@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Level C Dry Run</title>
-<meta name="description" content="Surgical navigation dry run, level C: planned vs achieved osteotomy on specimens 260266 (EMT) and 260519 L (PSI), with interactive 3D overlays and error maps.">
+<meta name="description" content="Surgical navigation dry run, level C: navigated osteotomy (EMT) vs patient-specific instruments (PSI), planned vs achieved.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script type="importmap">
 { "imports": {
@@ -17,80 +17,55 @@
 </script>
 </head>
 <body>
-<header class="topbar">
-  <span class="brand">Level C dry run</span>
-  <nav class="dots" aria-label="Slides"></nav>
-  <button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
-</header>
+<button class="theme-toggle" type="button" aria-label="Toggle light / dark theme">◐</button>
+<main>
+  <header class="intro">
+    <p class="eyebrow">Surgical navigation dry run · level C</p>
+    <h1>Navigation is as accurate as PSI.<br><span class="soft">In this dry run it landed closer to plan.</span></h1>
+  </header>
 
-<main id="deck">
-  <!-- 1 · title -->
-  <section class="slide title-slide" id="title" data-label="Title">
-    <div class="wrap">
-      <p class="eyebrow">Surgical navigation · dry run · level C</p>
-      <h1>Planned vs achieved osteotomy</h1>
-      <p class="lede">Two specimens were cut with the planned corrections, then 3D scanned. Each scan was
-        registered back to the plan to find out how far the corrected bone ended up from where we wanted it.</p>
-      <div class="case-chips">
-        <a class="chip" href="#case-260266"><b>260266</b><span>EMT · left</span></a>
-        <a class="chip" href="#case-260519_L"><b>260519 L</b><span>PSI · left</span></a>
+  <section class="planning">
+    <div class="planning-text">
+      <p class="step">1 · The plan</p>
+      <h2>A biplanar correction of high difficulty</h2>
+      <p id="planning-desc"></p>
+      <dl class="corr" id="planning-corr"></dl>
+    </div>
+    <figure class="viewer planning-viewer">
+      <canvas aria-label="3D view of the planned osteotomy"></canvas>
+      <div class="loading">Loading planning…</div>
+      <div class="legend planning-legend">
+        <span><span class="sw" style="background:var(--wedge)"></span>wedge removed</span>
+        <span><span class="sw" style="background:var(--cut)"></span>osteotomy planes</span>
+        <span><span class="sw" style="background:var(--plan)"></span>distal fragment</span>
       </div>
-      <p class="hint">Use <kbd>↓</kbd>/<kbd>↑</kbd> or scroll to move between slides · drag in the 3D views to rotate</p>
-    </div>
-  </section>
-
-  <!-- 2 · method -->
-  <section class="slide" id="method" data-label="Method">
-    <div class="wrap">
-      <p class="eyebrow">How the error is measured</p>
-      <h2>Align the shaft, then compare the condyles</h2>
-      <ol class="steps">
-        <li><span class="n">1</span><div><h3>Identify</h3><p>The post-op scan is matched against all plannings for that specimen. The condyles pick the right one unambiguously.</p></div></li>
-        <li><span class="n">2</span><div><h3>Align the shaft</h3><p>The scanned proximal shaft is registered onto the planned shaft. The shaft becomes the common reference.</p></div></li>
-        <li><span class="n">3</span><div><h3>Fit the distal head</h3><p>The distal fragment is fitted on its own. The rigid motion from the <em class="k-plan">planned head</em> to the <em class="k-ach">achieved head</em> is the error.</p></div></li>
-        <li><span class="n">4</span><div><h3>Report</h3><p>The residual rotation is split about the condylar, AP and shaft axes. Translation is reported at the knee centre and at the osteotomy.</p></div></li>
-      </ol>
-      <p class="note">Sign convention: a positive component is in the same direction as the planned correction, so <b>+ means over-corrected</b> and <b>− means under-corrected</b>.</p>
-    </div>
-  </section>
-
-  <!-- 3 · results at a glance -->
-  <section class="slide" id="glance" data-label="Results">
-    <div class="wrap">
-      <p class="eyebrow">Results at a glance</p>
-      <h2>Both cases landed within 4° of the plan</h2>
-      <div class="glance" id="glance-cards"></div>
-    </div>
-  </section>
-
-  <!-- 4,5 · case viewers (filled by app.js) -->
-  <section class="slide case-slide" id="case-260266" data-case="260266" data-label="260266"></section>
-  <section class="slide case-slide" id="case-260519_L" data-case="260519_L" data-label="260519 L"></section>
-
-  <!-- 6 · error breakdown -->
-  <section class="slide" id="breakdown" data-label="Errors">
-    <div class="wrap">
-      <p class="eyebrow">Where the error comes from</p>
-      <h2>Residual rotation by anatomical axis</h2>
-      <div class="charts">
-        <figure class="chart-card"><figcaption>Rotation error [°]: <span class="muted">− under-corrected · + over-corrected</span></figcaption><div class="chart" id="chart-rot"></div></figure>
-        <figure class="chart-card"><figcaption>Knee-centre shift [mm]: <span class="muted">components along each axis</span></figcaption><div class="chart" id="chart-knee"></div></figure>
+      <div class="scrub">
+        <button class="play" type="button" aria-label="Play / pause">❚❚</button>
+        <span>pre-op</span><input type="range" min="0" max="1" step="0.005" value="0" aria-label="Pre-op to planned"><span>planned</span>
       </div>
-      <details class="table-view"><summary>Show as table</summary><div id="breakdown-table"></div></details>
-    </div>
+    </figure>
   </section>
 
-  <!-- 7 · confidence & takeaways -->
-  <section class="slide" id="confidence" data-label="Confidence">
-    <div class="wrap">
-      <p class="eyebrow">How much to trust these numbers</p>
-      <h2>Registration quality &amp; takeaways</h2>
-      <div class="conf-grid" id="conf"></div>
-      <ul class="takeaways" id="takeaways"></ul>
+  <p class="step">2 · The result: <span class="soft">how far each specimen ended up from that plan</span></p>
+  <section class="compare" id="compare" aria-label="EMT vs PSI"></section>
+
+  <section class="views-section">
+    <div class="views-head">
+      <div class="seg" role="tablist">
+        <button role="tab" data-mode="error" aria-selected="true">Error map</button>
+        <button role="tab" data-mode="overlay" aria-selected="false">Plan vs scan</button>
+      </div>
+      <div class="legend" id="legend"></div>
     </div>
+    <div class="pair">
+      <figure class="viewer" data-case="260266"></figure>
+      <figure class="viewer" data-case="260519_L"></figure>
+    </div>
+    <p class="hint">Drag to rotate (both views follow) · scroll to zoom · hover the error map for exact distances</p>
   </section>
+
+  <footer class="note" id="note"></footer>
 </main>
-
 <div class="tooltip" role="tooltip" hidden></div>
 <script type="module" src="app.js"></script>
 </body>
