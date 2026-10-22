@@ -1,0 +1,3 @@
+# raw pipeline output (~400 MB); the site only needs docs/data, built by tools/build_site.py
+results/
+__pycache__/

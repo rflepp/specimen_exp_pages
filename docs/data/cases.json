@@ -1,0 +1,455 @@
+[
+ {
+  "id": "260266",
+  "method": "EMT",
+  "side": "Left",
+  "planning": "03_L_C_EMT_2D_260266",
+  "bin": "data/260266.bin",
+  "meshes": {
+   "plan_shaft": {
+    "posOffset": 0,
+    "vertices": 16416,
+    "idxOffset": 196992,
+    "triangles": 32828
+   },
+   "plan_head": {
+    "posOffset": 590928,
+    "vertices": 17802,
+    "idxOffset": 804552,
+    "triangles": 35600
+   },
+   "preop_head": {
+    "posOffset": 1231752,
+    "vertices": 12002,
+    "idxOffset": 1375776,
+    "triangles": 24000
+   },
+   "wedge": {
+    "posOffset": 1663776,
+    "vertices": 1531,
+    "idxOffset": 1682148,
+    "triangles": 3058
+   },
+   "scan_head": {
+    "posOffset": 1718844,
+    "vertices": 35110,
+    "idxOffset": 2140164,
+    "triangles": 70000
+   },
+   "scan_shaft": {
+    "posOffset": 2980164,
+    "vertices": 15103,
+    "idxOffset": 3161400,
+    "triangles": 29999
+   }
+  },
+  "transform": {
+   "R": [
+    [
+     0.999637161,
+     0.008447407,
+     -0.025577098
+    ],
+    [
+     -0.00930815,
+     0.999387871,
+     -0.033723004
+    ],
+    [
+     0.025276569,
+     0.033948843,
+     0.999103884
+    ]
+   ],
+   "t": [
+    2.488337,
+    -1.443534,
+    2.329437
+   ]
+  },
+  "frame": {
+   "up": [
+    0.121258,
+    0.055921,
+    0.991045
+   ],
+   "condylar": [
+    0.958271,
+    0.253785,
+    -0.131568
+   ],
+   "ap": [
+    -0.25887,
+    0.965643,
+    -0.022814
+   ]
+  },
+  "points": {
+   "knee_planned": [
+    -0.326,
+    -3.2,
+    -5.142
+   ],
+   "knee_achieved": [
+    2.267,
+    -4.465,
+    -2.924
+   ],
+   "shaft_axis": [
+    [
+     -0.478,
+     1.391,
+     -9.448
+    ],
+    [
+     22.561,
+     12.016,
+     178.85
+    ]
+   ],
+   "condylar_axis": [
+    [
+     -50.699,
+     -10.48,
+     57.909
+    ],
+    [
+     64.294,
+     19.974,
+     42.121
+    ]
+   ]
+  },
+  "metrics": {
+   "planned_total_deg": 24.293733802401594,
+   "achieved_total_deg": 22.9344710605603,
+   "planned": {
+    "extension": 17.465875920709895,
+    "varus": 3.3673227557083187,
+    "external_rotation": 16.106895534048544
+   },
+   "achieved": {
+    "extension": 16.49113227734503,
+    "varus": 1.1152410933296297,
+    "external_rotation": 15.794365497855773
+   },
+   "deviation_total_deg": 2.4785809663057545,
+   "deviation": {
+    "extension": -1.5554379230966853,
+    "varus": -1.8976440031527961,
+    "external_rotation": -0.3506047792373403
+   },
+   "translation": {
+    "osteotomy_site": {
+     "norm_mm": 4.315407504399186,
+     "along_condylar_axis": 0.03913441747441626,
+     "along_AP_axis": -3.468997658563873,
+     "along_shaft": 2.56656690372024
+    },
+    "knee_centre": {
+     "norm_mm": 3.638648220538333,
+     "along_condylar_axis": 1.8719440763206825,
+     "along_AP_axis": -1.943499646133925,
+     "along_shaft": 2.440982460697328
+    },
+    "head_centroid": {
+     "norm_mm": 3.7016748950425113,
+     "along_condylar_axis": 1.7117333738126819,
+     "along_AP_axis": -2.0912048656806586,
+     "along_shaft": 2.5296695624759713
+    }
+   },
+   "head_displacement_mm": {
+    "mean": 3.8831623668882402,
+    "rms": 3.9481744273167205,
+    "max": 5.206870065835201
+   },
+   "head_fit": {
+    "coverage_1mm": 0.8873754383873307,
+    "median_mm": 0.3939511494372825,
+    "p90_mm": 1.0555623097878495,
+    "starts_converged": 7,
+    "starts": 7
+   },
+   "shaft_fit": {
+    "coverage_1mm": 0.7561188811188811,
+    "median_mm": 0.5844586966349671,
+    "p90_mm": 1.557973152666032,
+    "starts": 0,
+    "max_rotation_spread_deg": 0.0,
+    "scan_reach_above_cut_mm": 59.216113672872446
+   },
+   "shaft_pose": "manual",
+   "sensitivity": {
+    "n_variants": 20,
+    "total_deg": [
+     2.44085720445855,
+     0.5906370691873082,
+     1.4385766945125793,
+     3.650211625296255
+    ],
+    "knee_shift_mm": [
+     5.346070264584851,
+     0.3655438369909004,
+     4.88537825191319,
+     6.241369570686891
+    ],
+    "raw_components_xyz_deg_mean": [
+     1.6206770270408402,
+     -1.754257923115573,
+     -0.1670812855588988
+    ],
+    "raw_components_xyz_deg_sd": [
+     0.3114656354761608,
+     0.6184532229822792,
+     0.30856079819044596
+    ]
+   },
+   "sensitivity_run_total_deg": 2.4876137826568425,
+   "axial_slide_2mm": {
+    "median_mm": [
+     0.4832040187369931,
+     0.5335008659031225
+    ],
+    "coverage_1mm": [
+     0.7310732745515354,
+     0.7638339920948617
+    ],
+    "deviation_total_deg": [
+     1.9890834373281725,
+     4.58866117318754
+    ],
+    "dev_extension": [
+     -2.0966542245111555,
+     -1.1680844048941086
+    ],
+    "dev_varus": [
+     -2.7439167703995797,
+     -1.595967102504281
+    ],
+    "dev_external_rotation": [
+     -3.0217169262322208,
+     0.17483810299410502
+    ],
+    "knee_shift_mm": [
+     3.437394308199132,
+     6.984295797796307
+    ],
+    "knee_along_shaft": [
+     1.966812717585734,
+     6.121339160540637
+    ]
+   }
+  }
+ },
+ {
+  "id": "260519_L",
+  "method": "PSI",
+  "side": "Left",
+  "planning": "04_L_C_PSI_5B_260519",
+  "bin": "data/260519_L.bin",
+  "meshes": {
+   "plan_shaft": {
+    "posOffset": 0,
+    "vertices": 12803,
+    "idxOffset": 153636,
+    "triangles": 25602
+   },
+   "plan_head": {
+    "posOffset": 460860,
+    "vertices": 22005,
+    "idxOffset": 724920,
+    "triangles": 44006
+   },
+   "preop_head": {
+    "posOffset": 1252992,
+    "vertices": 12002,
+    "idxOffset": 1397016,
+    "triangles": 24000
+   },
+   "wedge": {
+    "posOffset": 1685016,
+    "vertices": 1481,
+    "idxOffset": 1702788,
+    "triangles": 2958
+   },
+   "scan_head": {
+    "posOffset": 1738284,
+    "vertices": 35140,
+    "idxOffset": 2159964,
+    "triangles": 70000
+   },
+   "scan_shaft": {
+    "posOffset": 2999964,
+    "vertices": 15113,
+    "idxOffset": 3181320,
+    "triangles": 29999
+   }
+  },
+  "transform": {
+   "R": [
+    [
+     0.999345614,
+     -0.010246007,
+     -0.03468953
+    ],
+    [
+     0.01219628,
+     0.998328992,
+     0.05648428
+    ],
+    [
+     0.034052825,
+     -0.056870401,
+     0.997800663
+    ]
+   ],
+   "t": [
+    0.700239,
+    -6.318105,
+    -1.389904
+   ]
+  },
+  "frame": {
+   "up": [
+    0.117845,
+    -0.010358,
+    0.992978
+   ],
+   "condylar": [
+    0.964934,
+    0.237382,
+    -0.11204
+   ],
+   "ap": [
+    -0.234555,
+    0.971361,
+    0.037969
+   ]
+  },
+  "points": {
+   "knee_planned": [
+    0.082,
+    -2.809,
+    -5.222
+   ],
+   "knee_achieved": [
+    0.992,
+    -9.417,
+    -6.438
+   ],
+   "shaft_axis": [
+    [
+     2.043,
+     3.878,
+     -4.333
+    ],
+    [
+     24.434,
+     1.91,
+     184.333
+    ]
+   ],
+   "condylar_axis": [
+    [
+     -48.782,
+     -10.986,
+     61.968
+    ],
+    [
+     67.01,
+     17.5,
+     48.523
+    ]
+   ]
+  },
+  "metrics": {
+   "planned_total_deg": 24.293733763190144,
+   "achieved_total_deg": 27.232057929222346,
+   "planned": {
+    "extension": 17.41509572701511,
+    "varus": 4.141912574559583,
+    "external_rotation": 15.87281737711596
+   },
+   "achieved": {
+    "extension": 21.269025607043297,
+    "varus": 4.0625627288271,
+    "external_rotation": 15.873452387602597
+   },
+   "deviation_total_deg": 3.8547918344842604,
+   "deviation": {
+    "extension": 3.6757865625086987,
+    "varus": -1.1276765405327385,
+    "external_rotation": 0.276331058730515
+   },
+   "translation": {
+    "osteotomy_site": {
+     "norm_mm": 3.6135637200512503,
+     "along_condylar_axis": -1.7901469243710635,
+     "along_AP_axis": -2.761488145005478,
+     "along_shaft": -1.4924476449878092
+    },
+    "knee_centre": {
+     "norm_mm": 6.779670913133998,
+     "along_condylar_axis": -0.5540458144990525,
+     "along_AP_axis": -6.67777672498221,
+     "along_shaft": -1.031634110097723
+    },
+    "head_centroid": {
+     "norm_mm": 6.506972396046411,
+     "along_condylar_axis": -0.6683723143983238,
+     "along_AP_axis": -6.354219400168135,
+     "along_shaft": -1.2320162445287426
+    }
+   },
+   "head_displacement_mm": {
+    "mean": 6.6491397436722535,
+    "rms": 6.800114767647921,
+    "max": 8.936387945257986
+   },
+   "head_fit": {
+    "coverage_1mm": 0.7495183349851338,
+    "median_mm": 0.436801690559832,
+    "p90_mm": 3.425675295335239,
+    "starts_converged": 7,
+    "starts": 7
+   },
+   "shaft_fit": {
+    "coverage_1mm": 0.8737567880895722,
+    "median_mm": 0.3388566578235092,
+    "p90_mm": 1.167211412722786,
+    "starts": 17,
+    "max_rotation_spread_deg": 8.66950490035099e-14,
+    "scan_reach_above_cut_mm": 73.59304442393231
+   },
+   "shaft_pose": "automatic",
+   "sensitivity": {
+    "n_variants": 20,
+    "total_deg": [
+     3.83637512892521,
+     0.11019249440373387,
+     3.5904998160677963,
+     4.035511532028126
+    ],
+    "knee_shift_mm": [
+     6.834601077295086,
+     0.1937085099073842,
+     6.549264714142934,
+     7.294713233220164
+    ],
+    "raw_components_xyz_deg_mean": [
+     -3.7211264280707814,
+     -0.7494263071632485,
+     0.16373257147685763
+    ],
+    "raw_components_xyz_deg_sd": [
+     0.11436360743932493,
+     0.4446687719217972,
+     0.2896154790619562
+    ]
+   },
+   "sensitivity_run_total_deg": 3.8547918344842604,
+   "axial_slide_2mm": null
+  }
+ }
+]
