@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { mountClassic, themeHooks } from './classic.js';
 
 // displacement colour bins, 1 mm each, shared by both cases so they are comparable
 const ERR_RAMP = ['#fff7f3', '#fde0dd', '#fcc5c0', '#fa9fb5', '#f768a1', '#dd3497', '#ae017e', '#7a0177', '#49006a'];
@@ -13,7 +14,7 @@ const css = (name) => getComputedStyle(document.documentElement).getPropertyValu
 const color = (name) => new THREE.Color().setStyle(css(name));
 
 // ---------------------------------------------------------------- theme
-const themeListeners = [];
+const themeListeners = themeHooks;
 document.querySelector('.theme-toggle').addEventListener('click', () => {
   const root = document.documentElement;
   const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
@@ -355,14 +356,16 @@ document.querySelectorAll('.seg button').forEach((b) => b.addEventListener('clic
 
 const planningLoad = fetch(planning.bin).then((r) => r.arrayBuffer()).then((buf) => new PlanningViewer(document.querySelector('.planning-viewer'), planning, buf));
 
+const buffers = Object.fromEntries(await Promise.all(ordered.map(async (c) => [c.id, await (await fetch(c.bin)).arrayBuffer()])));
+window.classicViewers = mountClassic(document.getElementById('viewer'), ordered, buffers);
+
 await Promise.all(ordered.map(async (c) => {
   const fig = document.querySelector(`.viewer[data-case="${c.id}"]`);
   fig.innerHTML = `<canvas aria-label="3D view, ${LABEL[c.id].name}"></canvas>
     <figcaption><b>${LABEL[c.id].name}</b><span>specimen ${c.id.replace('_', ' ')}</span></figcaption>
     <div class="big">${c.metrics.deviation_total_deg.toFixed(1)}°<small>off plan</small></div>
     <div class="probe" hidden></div><div class="loading">Loading 3D model…</div>`;
-  const buf = await (await fetch(c.bin)).arrayBuffer();
-  viewers.push(new CaseViewer(fig, c, buf));
+  viewers.push(new CaseViewer(fig, c, buffers[c.id]));
 }));
 // rotating one result view rotates the other to the same anatomical viewpoint
 viewers.forEach((v) => { v.onChange = () => viewers.forEach((o) => o !== v && o.setPose(v.pose(), true)); });
